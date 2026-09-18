@@ -1,0 +1,45 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CLIENT_DOMAIN: www.idenfy.com
+
+jobs:
+  table:
+    name: Generated table matches its dataset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - name: Regenerate and diff
+        run: |
+          python render_table.py
+          if ! git diff --quiet; then
+            echo "README table no longer matches the dataset."
+            echo "Run 'python render_table.py' and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+  links:
+    name: Links resolve
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check client and github.com links
+        run: |
+          fail=0
+          for url in $(grep -oh "https://\($CLIENT_DOMAIN\|github\.com\|www\.fincen\.gov\)[^)\"< ]*" README.md | sed 's/[.,]$//' | sort -u); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "$url" || echo 000)
+            if [ "$code" != "200" ]; then echo "  $code  $url"; fail=1; fi
+          done
+          exit $fail

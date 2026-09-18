@@ -1,0 +1,47 @@
+# Source dataset for the comparison table in README.md.
+# Run `python render_table.py --write` after editing to regenerate the table.
+#
+# Each row describes what a provider documents about business verification
+# (KYB), beneficial ownership screening, and AML screening, since those are
+# the three checks a real estate transaction needs once the buyer is a shell
+# company or a trust rather than a person. Fields come from each provider's
+# own published materials or from third party competitive research current
+# as of the date noted per row. Competitor rows carry no url, matching the
+# convention across this account: link only the provider that publishes
+# the source data this repo draws from.
+
+providers:
+  - name: iDenfy
+    url: https://www.idenfy.com
+    kyb_and_ubo: "KYB Business Verification identifies beneficial owners holding more than 25 percent of a company, bundled with individual KYC in the same account"
+    aml_screening: "Sanctions and PEP screening, plus AML ongoing monitoring on Enterprise"
+    billing_model: "From 1.35 EUR per verification, 135 EUR monthly minimum. Approved only billing is a 0.50 EUR add on, as of September 2026"
+    best_for: "Brokerages that want KYC, KYB with UBO checks, and AML screening under one contract instead of three separate vendors"
+
+  - name: Trulioo
+    url: ""
+    kyb_and_ubo: "GlobalGateway draws on 700 plus data sources for business verification, the deepest UBO data of this group, though individual KYC is a lighter part of the product than in a dedicated IDV vendor"
+    aml_screening: "Not itemized as a standalone line in public materials"
+    billing_model: "Custom, volume based, sales led. Rates not publicly disclosed as of May 2026"
+    best_for: "Title and escrow companies that need the deepest beneficial ownership data on a buyer hiding behind a shell company"
+
+  - name: Sumsub
+    url: ""
+    kyb_and_ubo: "KYB module covers company and UBO checks, configured through a visual workflow builder so rules can vary by state or country without engineering support"
+    aml_screening: "Sanctions, PEP, and adverse media screening included in its stack"
+    billing_model: "1.35 to 1.85 USD per verification, 149 to 299 USD monthly minimum, as of May 2026"
+    best_for: "Brokerages onboarding buyers across many states or countries that need to change KYC and AML rules per jurisdiction often"
+
+  - name: Veriff
+    url: ""
+    kyb_and_ubo: "Added KYB and UBO checks in house after acquiring Vespia in February 2026, closing a gap it previously covered through a partner"
+    aml_screening: "Sanctions and PEP screening available, historically sold as an add on"
+    billing_model: "0.80 to 1.89 USD per completed verification, 49 to 209 USD monthly minimum, as of May 2026. Bills a completed session whether or not it is approved"
+    best_for: "Firms whose buyers present unusual or non Latin script documents, since Veriff covers more than 12,500 document types"
+
+  - name: Ondato
+    url: ""
+    kyb_and_ubo: "Runs business onboarding for named banking customers Luminor, SEB, and Swedbank, though public materials do not break out UBO screening as its own line item"
+    aml_screening: "Bundled, but reporters note it requires manual activation per customer rather than switching on by default"
+    billing_model: "Subscription plus per verification, roughly 0.50 to 1.40 EUR, as of May 2026"
+    best_for: "A brokerage already inside a bank's vendor stack, since three named regional banks already run onboarding on Ondato"
