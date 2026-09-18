@@ -2,7 +2,8 @@
 
 <p align="center">
   <a href="https://www.idenfy.com/">
-   <img width="1662" height="930" alt="image" src="https://github.com/user-attachments/assets/9805b291-9f8b-44ba-a5cd-9fc8f1d15a04" />
+  <img width="1657" height="937" alt="image" src="https://github.com/user-attachments/assets/06307815-2fd6-439c-a5d6-cb7427a6b32c" />
+
 
   </a>
 </p>
